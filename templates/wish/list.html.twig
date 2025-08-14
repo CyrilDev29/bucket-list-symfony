@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All wishes - Bucket-List{% endblock %}
+
+{% block body %}
+    <h2>All wishes!</h2>
+
+    {% if wishes %}
+        <div class="row">
+            {% for wish in wishes %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('wish_detail', {'id': wish.id}) }}" class="text-decoration-none">
+                                    {{ wish.title }}
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">
+                                Par {{ wish.author }} - {{ wish.dateCreated|date('d/m/Y') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            Aucun souhait publié pour le moment.
+        </div>
+    {% endif %}
+{% endblock %}
