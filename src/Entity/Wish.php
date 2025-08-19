@@ -29,7 +29,8 @@ class Wish
     #[ORM\Column]
     private ?\DateTime $dateCreated = null;
 
-    #[ORM\Column(nullable: true)]
+    // NOTE: on pointe explicitement vers la colonne BDD 'date_updated'
+    #[ORM\Column(name: 'date_updated', nullable: true)]
     private ?\DateTime $dateUpdate = null;
 
     public function getId(): ?int
@@ -45,7 +46,6 @@ class Wish
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -57,7 +57,6 @@ class Wish
     public function setDescription(?string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -69,7 +68,6 @@ class Wish
     public function setAuthor(string $author): static
     {
         $this->author = $author;
-
         return $this;
     }
 
@@ -81,7 +79,6 @@ class Wish
     public function setIsPublished(bool $isPublished): static
     {
         $this->isPublished = $isPublished;
-
         return $this;
     }
 
@@ -93,7 +90,6 @@ class Wish
     public function setDateCreated(\DateTime $dateCreated): static
     {
         $this->dateCreated = $dateCreated;
-
         return $this;
     }
 
@@ -105,7 +101,6 @@ class Wish
     public function setDateUpdate(?\DateTime $dateUpdate): static
     {
         $this->dateUpdate = $dateUpdate;
-
         return $this;
     }
 }

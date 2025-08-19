@@ -19,8 +19,10 @@
 <header class="bg-light py-3">
     <div class="container">
         <div class="d-flex align-items-center">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="me-3" style="height: 40px;">
-            <h1 class="h3 mb-0">Bucket-List</h1>
+            <a href="{{ path('main_home') }}" class="d-flex align-items-center text-decoration-none text-dark">
+                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="me-3" style="height: 40px;">
+                <h1 class="h3 mb-0">Bucket-List</h1>
+            </a>
         </div>
     </div>
 </header>
@@ -36,12 +38,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('main_home') }}">Accueil</a>
                 </li>
-                <!-- MODULE 4 : Nouveaux liens à ajouter -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('main_about') }}">About us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('wish_list') }}">Wishes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('wish_create') }}">Ajouter un souhait</a>
                 </li>
             </ul>
         </div>
@@ -50,6 +54,36 @@
 
 <!-- Contenu principal -->
 <main class="container my-4">
+    {# AJOUT DES MESSAGES FLASH GLOBAUX - ILS S'AFFICHENT SUR TOUTES LES PAGES #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    {# Le contenu spécifique de chaque page s'affiche ici #}
     {% block body %}{% endblock %}
 </main>
 

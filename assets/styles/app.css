@@ -1,3 +1,233 @@
+/* CSS Bucket-List - Design élégant tons bleus */
+
+/* Variables CSS pour cohérence des couleurs */
+:root {
+    --primary-blue: #2563eb;
+    --secondary-blue: #1e40af;
+    --light-blue: #dbeafe;
+    --very-light-blue: #f0f9ff;
+    --dark-blue: #1e3a8a;
+    --accent-blue: #3b82f6;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+}
+
+/* Structure générale */
 body {
-    background-color: skyblue;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--very-light-blue) 0%, #ffffff 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header élégant */
+header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid var(--accent-blue);
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+header a:hover {
+    color: var(--light-blue);
+    text-decoration: none;
+}
+
+.header-logo img {
+    max-width: 42px;
+    margin-right: 10px;
+    filter: brightness(0) invert(1);
+}
+
+header h1 {
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Navigation moderne */
+.navbar {
+    background: var(--secondary-blue) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 6px;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+/* Contenu principal */
+main {
+    flex: 1;
+    padding: 2rem 0;
+    background: var(--very-light-blue);
+}
+
+/* Titre principal */
+main h2 {
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards des souhaits */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
+    transition: all 0.3s ease;
+    background: white;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+}
+
+.card-body {
+    padding: 1.75rem;
+}
+
+.card-title {
+    margin-bottom: 1rem;
+}
+
+.card-title a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+    color: var(--secondary-blue);
+    text-decoration: none;
+}
+
+.card-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Page de détail */
+.card h2 {
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.text-muted {
+    color: var(--text-light) !important;
+    font-style: italic;
+}
+
+/* Boutons */
+.btn-secondary {
+    background: var(--primary-blue);
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    color: white;
+}
+
+/* Alert info */
+.alert-info {
+    background: var(--light-blue);
+    border: 1px solid var(--accent-blue);
+    color: var(--dark-blue);
+    border-radius: 8px;
+}
+
+/* Footer élégant */
+footer {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--secondary-blue) 100%);
+    color: white;
+    padding: 1.5rem 0;
+    margin-top: auto;
+    text-align: center;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Animations subtiles */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main h2 {
+        font-size: 2rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
 }
