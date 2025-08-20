@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\WichRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Category; // AJOUT : Import de Category
 
 #[ORM\Entity(repositoryClass: WichRepository::class)]
 class Wish
@@ -32,6 +33,10 @@ class Wish
     // NOTE: on pointe explicitement vers la colonne BDD 'date_updated'
     #[ORM\Column(name: 'date_updated', nullable: true)]
     private ?\DateTime $dateUpdate = null;
+
+    // CORRECTION : inversedBy: 'wishes' au lieu de 'no'
+    #[ORM\ManyToOne(inversedBy: 'wishes')]
+    private ?Category $category = null;
 
     public function getId(): ?int
     {
@@ -101,6 +106,18 @@ class Wish
     public function setDateUpdate(?\DateTime $dateUpdate): static
     {
         $this->dateUpdate = $dateUpdate;
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
         return $this;
     }
 }

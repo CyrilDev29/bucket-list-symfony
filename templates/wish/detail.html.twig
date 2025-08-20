@@ -9,6 +9,13 @@
                 <div class="card-body">
                     <h2 class="card-title">{{ wish.title }}</h2>
 
+                    {# NOUVEAU : Affichage de la catégorie #}
+                    {% if wish.category %}
+                        <div class="mb-3">
+                            <span class="badge bg-success fs-6">{{ wish.category.name }}</span>
+                        </div>
+                    {% endif %}
+
                     <p class="text-muted mb-3">
                         Par <strong>{{ wish.author }}</strong> - Créé le {{ wish.dateCreated|date('d/m/Y à H:i') }}
                     </p>
@@ -22,11 +29,10 @@
                     <div class="mt-4 d-flex gap-2">
                         <a href="{{ path('wish_list') }}" class="btn btn-secondary">← Retour à la liste</a>
 
-                        {# NOUVEAU : Bouton de suppression avec token CSRF #}
                         <a href="{{ path('wish_delete', {'id': wish.id, 'token': csrf_token('delete' ~ wish.id)}) }}"
                            class="btn btn-danger"
                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce souhait ?')">
-                            Supprimer
+                            🗑️ Supprimer
                         </a>
                     </div>
                 </div>

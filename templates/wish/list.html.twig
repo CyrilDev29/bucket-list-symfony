@@ -1,32 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All wishes - Bucket-List{% endblock %}
+{% block title %}Liste des souhaits - Bucket-List{% endblock %}
 
 {% block body %}
-    <h2>All wishes!</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h1 class="text-center mb-4">Tous les souhaits</h1>
 
-    {% if wishes %}
-        <div class="row">
-            {% for wish in wishes %}
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ path('wish_detail', {'id': wish.id}) }}" class="text-decoration-none">
-                                    {{ wish.title }}
-                                </a>
-                            </h5>
-                            <p class="card-text text-muted">
-                                Par {{ wish.author }} - {{ wish.dateCreated|date('d/m/Y') }}
-                            </p>
+            {% if wishes|length > 0 %}
+                <div class="row">
+                    {% for wish in wishes %}
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">
+                                        <a href="{{ path('wish_detail', {'id': wish.id}) }}" class="text-decoration-none">
+                                            {{ wish.title }}
+                                        </a>
+                                    </h5>
+
+                                    {# NOUVEAU : Affichage de la catégorie #}
+                                    {% if wish.category %}
+                                        <div class="mb-2">
+                                            <span class="badge bg-success">{{ wish.category.name }}</span>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if wish.description %}
+                                        <p class="card-text">
+                                            {{ wish.description|length > 100 ? wish.description|slice(0, 100) ~ '...' : wish.description }}
+                                        </p>
+                                    {% endif %}
+
+                                    <div class="mt-auto">
+                                        <small class="text-muted">
+                                            Par <strong>{{ wish.author }}</strong> -
+                                            {{ wish.dateCreated|date('d/m/Y') }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            {% else %}
+                <div class="text-center">
+                    <p>Aucun souhait pour le moment.</p>
+                    <a href="{{ path('wish_create') }}" class="btn btn-primary">Créer le premier souhait</a>
+                </div>
+            {% endif %}
         </div>
-    {% else %}
-        <div class="alert alert-info">
-            Aucun souhait publié pour le moment.
-        </div>
-    {% endif %}
+    </div>
 {% endblock %}
